@@ -1,0 +1,46 @@
+<div class="container mt-4 col-md-4">
+    <h2 class="my-4">Book a Cab</h2>
+    <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="driverName" class="form-label">Driver Name</label>
+            <input type="text" id="driverName" formControlName="driverName" class="form-control" />
+            <div *ngIf="bookingForm.controls['driverName'].invalid && (bookingForm.controls['driverName'].dirty || bookingForm.controls['driverName'].touched)"
+                class="text-danger">
+                Driver name is required
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="cabNumber" class="form-label">Cab Number</label>
+            <input type="text" id="cabNumber" formControlName="cabNumber" class="form-control" />
+            <div *ngIf="bookingForm.controls['cabNumber'].invalid && (bookingForm.controls['cabNumber'].dirty || bookingForm.controls['cabNumber'].touched)"
+                class="text-danger">
+                Cab number is required
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="capacity" class="form-label">Capacity</label>
+            <input type="number" id="capacity" formControlName="capacity" class="form-control" min="0" max="6" />
+            <div *ngIf="bookingForm.controls['capacity'].invalid && (bookingForm.controls['capacity'].dirty || bookingForm.controls['capacity'].touched)"
+                class="text-danger">
+                Capacity is required
+            </div>
+            <div *ngIf="bookingForm.controls['capacity']?.errors?.['max']" class="text-danger">Capacity add up to 6.</div>
+        </div>
+        <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <input type="text" id="location" formControlName="location" class="form-control" />
+            <div *ngIf="bookingForm.controls['location'].invalid && (bookingForm.controls['location'].dirty || bookingForm.controls['location'].touched)"
+                class="text-danger">
+                Location is required
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="bookingTime" class="form-label">Booking Time</label>
+            <input type="datetime-local" id="bookingTime" formControlName="bookingTime" class="form-control" />
+            <div *ngIf="bookingForm.controls['bookingTime'].invalid && (bookingForm.controls['bookingTime'].dirty || bookingForm.controls['bookingTime'].touched)" class="text-danger">
+                Booking time is required
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="bookingForm.invalid">Book Cab</button>
+    </form>
+</div>
